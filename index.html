@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Gdzie protest?</title>
+    <style type="text/css">
+         /* * {
+            background-color: rgba(0, 0, 0, 0.05);
+        } */
+
+        body {
+            font-family: "Open Sans", Arial, Helvetica, sans-serif;
+            padding: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav li {
+            list-style: none;
+            display: inline;
+            float: right;
+            margin: 15px;
+        }
+
+        #protest-container td {
+            padding: 15px;
+        }
+
+        #protest-container tr {
+            margin-bottom: 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        var protests = [
+            {
+                "title": "Łańcuch Światła Berlin",
+                "location": "Unter der Linden 70, 10117, Berlin, Niemcy",
+                "coordinates": "",
+                "date": "2017-07-21",
+                "time": "21:00",
+                "link": "https://www.facebook.com/events/769144523247224/",
+                "description": "Światłem chcemy odpędzić widmo fatalnej reformy sądownictwa, która pozbawi nas prawa do apolitycznych, wolnych od nacisków sądów. Od niedzieli siostrzane wydarzenia odbywają się pod sądami w polskich miastach i miasteczkach. Przy dźwiękach muzyki, w zadumie i skupieniu ludzie w całej Polsce domagają się od rządzących, aby uszanowali prawo obywateli do niezawisłego, niezależnego sądownictwa."
+            },
+            {
+                "title": "Warszawa wyprowadza świeczki na spacer pod SN",
+                "location": "Ogród Krasińskich, 00-246 Warszawa, Polska",
+                "coordinates": "",
+                "date": "2017-07-30",
+                "time": "21:00",
+                "link": "https://www.facebook.com/events/144988649418529/?acontext=%7B%22ref%22%3A%223%22%2C%22ref_newsfeed_story_type%22%3A%22regular%22%2C%22action_history%22%3A%22null%22%7D",
+                "description": ""
+            }
+        ];
+
+        String.prototype.supplant = function (o) {
+            return this.replace(/{([^{}]*)}/g,
+                function (a, b) {
+                    var r = o[b];
+                    return typeof r === 'string' || typeof r === 'number' ? r : a;
+                }
+            );
+        };
+
+        function getProtestHtml(protest) {
+            var output = document.createElement("tr");
+            output.classList.add("protest");
+            output.innerHTML = `
+                    <tr>
+                        <td>
+                            <a href="{link}">{title}</a><br>
+                            <small>
+                                <b>{date}</b>, {time}<br>
+                                {location}
+                            </small>
+                            <p>{description}</p>
+                        </td>
+                        <td>
+                            <iframe width="400" height="200" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBuCrTB0sOhwXyTfZNCwVfikwLtt7w7wJ0&q={location}" allowfullscreen>
+                            </iframe>
+                        </td>
+                    </tr>
+            `.supplant(protest);
+            return output;
+        }
+
+        function start() {
+            var protestsContainer = document.getElementById("protest-container");
+            for (var p in protests) {
+                protestsContainer.appendChild(getProtestHtml(protests[p]));
+            }
+        }
+
+        function sort() {
+            var protests = document.querySelectorAll("li.protest");
+            console.log(protests);
+        }
+
+        window.onload = start;
+    </script>
+</head>
+<body>
+    <header>
+        <ul class="nav">
+            <li><a href="/about">O stronie</a></li>
+        </ul>
+        <h1>Gdzie protest?</h1>
+    </header>
+    <table id="protest-container">
+    </table>
+</body>
+</html>
