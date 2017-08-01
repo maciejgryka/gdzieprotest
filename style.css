@@ -1,0 +1,39 @@
+/* * {
+    background-color: rgba(0, 0, 0, 0.05);
+} */
+
+body {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    padding: 15px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header h1 a:hover {
+    text-decoration: none;
+}
+
+.nav li {
+    list-style: none;
+    display: inline;
+    float: right;
+    margin: 15px;
+}
+
+#protest-container td {
+    padding: 15px;
+}
+
+#protest-container tr {
+    margin-bottom: 15px;
+}
