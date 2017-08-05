@@ -1,4 +1,4 @@
-String.prototype.supplant = function (o) {
+    String.prototype.supplant = function (o) {
     return this.replace(/{([^{}]*)}/g,
         function (a, b) {
             var r = o[b];
@@ -10,18 +10,23 @@ String.prototype.supplant = function (o) {
 function getProtestHtml(protest) {
     var output = document.createElement("tr");
     output.classList.add("protest");
+    if (protest['link'].length > 0) {
+        protest['link'] = '<a href="{link}">{title}</a>'.supplant(protest);
+    } else {
+        protest['link'] = protest['title'];
+    }
     output.innerHTML = `
             <tr>
+                <td class="date-col">
+                    <b>{date}</b> {time}
+                </td>
                 <td>
-                    <a href="{link}">{title}</a><br>
-                    <small>
-                        <b>{date}</b>, {time}<br>
-                        {location}
-                    </small>
+                    <h3>{link}<br></h3>
+                    <small>{location}</small>
                     <p>{description}</p>
                 </td>
                 <td>
-                    <iframe width="400" height="200" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBuCrTB0sOhwXyTfZNCwVfikwLtt7w7wJ0&q={location}" allowfullscreen>
+                    <iframe width="300" height="200" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBuCrTB0sOhwXyTfZNCwVfikwLtt7w7wJ0&q={location}" allowfullscreen>
                     </iframe>
                 </td>
             </tr>

@@ -3,16 +3,28 @@
 } */
 
 body {
+    --text-color: #111;
+    --visited-link-color: #666;
+
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
     padding: 15px;
-    max-width: 800px;
+    max-width: 960px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.3em;
 }
 
-header a {
+a, a:hover {
+    color: var(--text-color);
+}
+
+a:visited {
+    color: var(--visited-link-color);
+}
+
+header a, header a:visited {
     text-decoration: none;
-    color: inherit;
+    color: var(--text-color);
 }
 
 header a:hover {
@@ -30,10 +42,19 @@ header h1 a:hover {
     margin: 15px;
 }
 
-#protest-container td {
-    padding: 15px;
+#protest-container {
+    border-collapse: collapse;
+    width: 100%;
 }
 
 #protest-container tr {
     margin-bottom: 15px;
+    border-bottom: 2px solid #999
+}
+
+#protest-container td {
+    padding: 15px;
+}
+#protest-container td.date-col {
+    min-width: 100px;
 }
